@@ -13,3 +13,11 @@ $targetmachines | foreach {
   #write out last 5 warnings and errors from system log
   #write out last 5 warnings and errors from application log
 }
+
+
+
+
+
+
+
+$PhysicalRAM = (Get-WMIObject -class Win32_PhysicalMemory -ComputerName $Computer | Measure-Object -Property capacity -Sum | % {[Math]::Round(($_.sum / 1GB),2)})
