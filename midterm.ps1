@@ -14,6 +14,14 @@ $targetmachines | foreach {
   #write out pysical memory
   #write out roles and features
   #write out whether remote desktp is enabled
+  
+  $logs = System,Application
+  $loglevels = 1,2
+  foreach ($log in $logs) {
+    foreach ($level in $loglevels) {
+      Get-WinEvent -FilterHashtable @{Logname="$log";Level="$leval"} -maxevents 5
+    }
+  }
   #write out last 5 warnings and errors from system log
   #write out last 5 warnings and errors from application log
 }
